@@ -1,0 +1,256 @@
+/* Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo */
+
+body {
+  background:
+    radial-gradient(circle at top, #1d2636 0%, #121212 50%);
+    
+  color: #f5f5f5;
+
+  font-family:
+    Inter,
+    Segoe UI,
+    sans-serif;
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 40px;
+}
+
+/* Contenedor */
+
+.container {
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+/* Título */
+
+h1 {
+  text-align: center;
+  font-size: 42px;
+
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #9ca3af;
+
+  margin-bottom: 15px;
+}
+
+/* Textarea */
+
+textarea {
+  width: 100%;
+  min-height: 220px;
+
+  background: #18181b;
+
+  color: white;
+
+  border: 1px solid #27272a;
+
+  border-radius: 16px;
+
+  padding: 16px;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+textarea:focus {
+  border-color: #60a5fa;
+
+  box-shadow:
+    0 0 0 4px rgba(96,165,250,.15);
+}
+
+/* PDF */
+
+input[type="file"] {
+  background: #18181b;
+
+  border: 1px solid #27272a;
+
+  border-radius: 16px;
+
+  padding: 12px;
+
+  color: #d4d4d8;
+}
+
+/* Botón */
+
+button {
+  width: 100%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #60a5fa,
+      #3b82f6
+    );
+
+  color: white;
+
+  border: none;
+
+  border-radius: 16px;
+
+  padding: 14px;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(59,130,246,.35);
+}
+
+/* Resultados */
+
+#results {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+/* Tarjeta */
+
+.result-card {
+  background:
+    linear-gradient(
+      180deg,
+      #1b1b1f,
+      #151518
+    );
+
+  border: 1px solid #27272a;
+
+  border-radius: 18px;
+
+  padding: 24px;
+
+  transition: .2s;
+}
+
+.result-card:hover {
+  border-color: #3b82f6;
+
+  transform: translateY(-2px);
+}
+
+.result-card h2 {
+  margin-bottom: 10px;
+}
+
+.result-card p {
+  margin-bottom: 15px;
+}
+
+/* Match */
+
+.match-score {
+  display: inline-block;
+
+  background: rgba(59,130,246,.15);
+
+  color: #93c5fd;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-weight: 600;
+
+  margin-bottom: 12px;
+}
+
+/* Listas */
+
+.result-card ul {
+  list-style: none;
+
+  margin-top: 8px;
+  margin-bottom: 15px;
+}
+
+/* Skills encontradas */
+
+.good {
+  background: rgba(134,239,172,.12);
+
+  color: #a7f3d0;
+
+  border: 1px solid rgba(134,239,172,.2);
+
+  padding: 8px 12px;
+
+  border-radius: 10px;
+
+  margin-bottom: 8px;
+
+  display: inline-block;
+
+  margin-right: 8px;
+}
+
+/* Skills faltantes */
+
+.missing {
+  background: rgba(252,165,165,.12);
+
+  color: #fecaca;
+
+  border: 1px solid rgba(252,165,165,.2);
+
+  padding: 8px 12px;
+
+  border-radius: 10px;
+
+  margin-bottom: 8px;
+
+  display: inline-block;
+
+  margin-right: 8px;
+}
+
+/* Headers */
+
+.section-title {
+  margin-top: 15px;
+  margin-bottom: 10px;
+
+  color: #d1d5db;
+
+  font-size: 15px;
+}

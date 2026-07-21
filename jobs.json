@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Backend Junior",
+    "skills": [
+      "Node.js",
+      "SQL",
+      "REST APIs"
+    ]
+  },
+
+  {
+    "title": "Backend Developer",
+    "skills": [
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Docker",
+      "Git"
+    ]
+  },
+
+  {
+    "title": "Python Developer",
+    "skills": [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Docker",
+      "Git"
+    ]
+  },
+
+  {
+    "title": "Automation Intern",
+    "skills": [
+      "n8n",
+      "APIs",
+      "JavaScript"
+    ]
+  },
+
+  {
+    "title": "DevOps Junior",
+    "skills": [
+      "Docker",
+      "Linux",
+      "Git",
+      "CI/CD"
+    ]
+  },
+
+  {
+    "title": "Full Stack Junior",
+    "skills": [
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "React",
+      "SQL"
+    ]
+  },
+
+  {
+    "title": "API Integration Specialist",
+    "skills": [
+      "REST APIs",
+      "Node.js",
+      "JSON",
+      "Postman"
+    ]
+  },
+
+  {
+    "title": "Junior Software Developer",
+    "skills": [
+      "Git",
+      "JavaScript",
+      "SQL",
+      "Docker"
+    ]
+  },
+
+  {
+    "title": "Data Engineer Intern",
+    "skills": [
+      "Python",
+      "SQL",
+      "PostgreSQL",
+      "Docker"
+    ]
+  },
+
+  {
+    "title": "Cloud Developer",
+    "skills": [
+      "Docker",
+      "Git",
+      "AWS",
+      "Node.js"
+    ]
+  }
+]
