@@ -5,10 +5,7 @@ const jobService = require("../services/jobService");
 const data = require("../jobs.json");
 
 // url producción
-//const webhookURL = 'http://localhost:5678/webhook/cv'
-
-// url prueba
-const webhookURL = 'http://localhost:5678/webhook-test/cv'
+const webhookURL = process.env.WEBHOOK_URL;
 
 const multer = require("multer");
 
@@ -108,58 +105,77 @@ router.get("/:title", (req, res) => {
 });
 
 
-router.post("/match", (req, res) => {
+router.post("/match", async (req, res) => {
 
-  const userSkills = req.body?.skills;
+    const userSkills = req.body?.skills;
 
-  if (!userSkills || !Array.isArray(userSkills)) {
-    return res.status(400).json({
-      error: "skills debe ser un array"
-    });
-  }
+    if (!userSkills || !Array.isArray(userSkills)) {
+        return res.status(400).json({
+            error: "skills debe ser un array"
+        });
+    }
 
-  const jobs = data
-    .map(job => {
+    const matchedJobs = data
+        .map(job => {
 
-      const matches = job.skills.filter(skill =>
-        userSkills.includes(skill)
-      );
+            const matches = job.skills.filter(skill =>
+                userSkills.includes(skill)
+            );
 
-      const missingSkills = job.skills.filter(skill =>
-        !userSkills.includes(skill)
-      );
+            const missingSkills = job.skills.filter(skill =>
+                !userSkills.includes(skill)
+            );
 
-      const totalSkills = job.skills.length;
-      const matchCount = matches.length;
+            const totalSkills = job.skills.length;
 
-      const matchPercentage =
-        (matchCount / totalSkills) * 100;
+            const matchPercentage =
+                (matches.length / totalSkills) * 100;
 
-      if (matchPercentage >= 20) {
-        return {
-          title: job.title,
-          matches,
-          missingSkills,
-          matchPercentage: matchPercentage.toFixed(1)
-        };
-      }
+            if (matchPercentage < 20) return null;
 
-      return null;
+            return {
+                title: job.title,
+                matches,
+                missingSkills,
+                matchPercentage: matchPercentage.toFixed(1)
+            };
 
-    })
-    .filter(Boolean);
+        })
+        .filter(Boolean)
+        .sort((a, b) =>
+            Number(b.matchPercentage) - Number(a.matchPercentage)
+        );
 
-  jobs.sort(
-    (a, b) => b.matchPercentage - a.matchPercentage
-  );
+    const jobsWithVacancies = await Promise.all(
 
-  res.json(jobs);
+        matchedJobs.map(async (job) => {
+
+            const vacancies = await jobService.getAllJobs({
+
+                q: job.title
+
+            });
+
+            return {
+
+                ...job,
+
+                vacancies
+
+            };
+
+        })
+
+    );
+
+    res.json(jobsWithVacancies);
 
 });
 
 // Webhook
 
-router.post("/upload-pdf",
+router.post(
+  "/upload-pdf",
   upload.single("cv"),
   async (req, res) => {
 
@@ -167,30 +183,80 @@ router.post("/upload-pdf",
 
       const formData = new FormData();
 
-      const blob = new Blob([req.file.buffer], {
-        type: req.file.mimetype
-      });
+      const blob = new Blob(
+        [req.file.buffer],
+        {
+          type: req.file.mimetype
+        }
+      );
 
-      formData.append("cv", blob, req.file.originalname);
+      formData.append(
+        "cv",
+        blob,
+        req.file.originalname
+      );
 
-      const response = await fetch(webhookURL, {
-        method: "POST",
-        body: formData
-      });
+      const response = await fetch(
+        webhookURL,
+        {
+          method: "POST",
+          body: formData
+        }
+      );
 
       const raw = await response.text();
 
       let result;
+
       try {
+
         result = JSON.parse(raw);
-      } catch (error) {
-        result = raw; // fallback
+
+      } catch {
+
+        result = raw;
+
       }
 
-      res.json({
-        success: true,
-        result
-      });
+      // Si el webhook no devolvió un array
+      if (!Array.isArray(result)) {
+
+        return res.json({
+          success: true,
+          result
+        });
+
+      }
+
+const jobsWithVacancies = await Promise.all(
+
+    result.map(async (match) => {
+
+        const vacancies = await jobService.getAllJobs({
+
+            q: match.title
+
+        });
+
+        return {
+
+            ...match,
+
+            vacancies
+
+        };
+
+    })
+
+);
+
+res.json({
+
+    success: true,
+
+    result: jobsWithVacancies
+
+});
 
     } catch (error) {
 

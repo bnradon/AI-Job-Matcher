@@ -1,46 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Front test xd</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Job Matcher</title>
+
     <link rel="stylesheet" href="styles.css">
-  <!-- <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    .container { max-width: 600px; margin: auto; text-align: center; }
-    button { padding: 10px 20px; font-size: 16px; }
-  </style> -->
 </head>
+
 <body>
-  
-  
-  <div class="container">
 
-    <h1>wawa</h1>
-    <p>Clickea el botón para buscar c:</p>
+<div class="container">
 
-    <textarea class="form-control" id="cvInput"></textarea>
+    <header class="hero">
 
-    <input type="file" class="form-control" id="pdfInput" accept=".pdf"/>
+        <h1>Job Matcher</h1>
 
-    <form id="searchForm" class="search-form">
-    <button class="btn btn-primary" id="searchButton" type="submit" >
-    
-    Buscar
-    </button>
+        <p class="subtitle">
+            Sube tu CV y encuentra las vacantes que mejor se adapten a tu perfil.
+        </p>
 
-    </form>
+    </header>
 
-    <div class="results" id="results"></div> 
+    <main class="dashboard">
 
-    <p class="status" id="status"></p>
-    
-  </div>
-  
-<script src="app.js">
-  
-</script>
+        <!-- PANEL IZQUIERDO -->
+
+        <aside class="sidebar">
+
+            <section class="card">
+
+                <h2>Subir CV</h2>
+
+                <form id="searchForm">
+
+
+                    <!-- ARREGLAR ESTO INPUT VERDE  -->
+                    <label class="upload-area">
+
+                        <input
+                            id="pdfInput"
+                            type="file"
+                            accept=".pdf">
+
+                        <span class="upload-icon">
+                            <img 
+                            src ="assets\document_icon.png" 
+                            alt="Subir"
+                            width="50"
+                            >
+                        </span>
+
+                        <span class="upload-title">
+                            Selecciona tu CV
+                        </span>
+
+                        <span class="upload-subtitle">
+                            En formato PDF
+                        </span>
+
+                    </label>
+
+                    <button
+                        id="searchButton"
+                        type="submit">
+
+                        Analizar
+
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <section class="card">
+
+                <h2>Análisis de IA:</h2>
+
+                <div id="summary">
+
+                    <div class="empty-summary">
+
+                        <p>
+                            Una vez completado, aparecerán aquí tus habilidades :)
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </aside>
+
+
+        <!-- PANEL DERECHO -->
+
+        <section class="content">
+
+            <div class="results-header">
+
+                <h2>Vacantes compatibles</h2>
+
+                <span
+                    class="job-counter"
+                    id="jobCounter">
+
+                    0 resultados
+
+                </span>
+
+            </div>
+
+            <div
+                id="results"
+                class="results-grid">
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="app.js"></script>
+
 </body>
 </html>
-
-

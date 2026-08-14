@@ -62,6 +62,7 @@ const SEARCH_URL = "https://himalayas.app/jobs/api/search";
 
       title: job.title,
       company: job.companyName,
+      logo: job.companyLogo,
       location: job.locationRestrictions?.join(", ") || "Remote",
       description: job.excerpt,
       url: job.applicationLink,

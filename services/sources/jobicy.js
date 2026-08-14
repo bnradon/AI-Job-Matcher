@@ -45,16 +45,24 @@ if (filters.employmentType) {
 
     
     return data.jobs.map(job => ({
-      title: job.jobTitle,
-      company: job.companyName,
-      location: job.jobGeo,
-      description: job.jobExcerpt,
-      url: job.url,
-      salary: "Not specified",
-      employmentType: job.jobType?.join(", "),
-      level: job.jobLevel,
-      source: "Jobicy"
-    }));
+
+    title: job.jobTitle,
+    company: job.companyName,
+    logo: job.companyLogo,
+    location: job.jobGeo,
+    description: job.jobExcerpt,
+    url: job.url,
+
+    salary:
+        job.salaryMin && job.salaryMax
+            ? `${job.salaryCurrency} ${job.salaryMin} - ${job.salaryMax}`
+            : "Not specified",
+
+    employmentType: job.jobType?.join(", "),
+    level: job.jobLevel,
+    source: "Jobicy"
+
+}));
 
   } catch (error) {
 
