@@ -19,6 +19,6 @@ app.use("/jobs", jobsRoutes);
 
 
 
-app.listen(port, () => {
-  console.log(`Servidor en http://localhost:${port} :)`);
-  });
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Servidor escuchando en el puerto ${port} :)`);
+});
