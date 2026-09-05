@@ -107,7 +107,7 @@ form.addEventListener("submit", async (e) => {
     try {
 
         const response = await fetch(
-            "http://localhost:3000/jobs/upload-pdf",
+            "https://ai-job-matcher-api-qme4.onrender.com/jobs/upload-pdf",
 
             {
 
