@@ -40,7 +40,7 @@ function archivoExitoso(file) {
 
         searchButton.disabled = true;
 
-        alert("Solo archivos PDF");
+        alert("Nop, solo archivos PDF");
 
         return;
 
@@ -50,12 +50,13 @@ function archivoExitoso(file) {
     uploadArea.style.backgroundColor = "#14711c20";
 
     uploadTitle.textContent = file.name;
-    uploadSubtitle.textContent = "Listo";
+    uploadSubtitle.textContent = "Listo :)";
 
     searchButton.disabled = false;
 }
 
-// drop del archivo 
+// DROP del archivo 
+
 uploadArea.addEventListener("drop", (e) => {
     const files = e.dataTransfer.files;
     
@@ -65,11 +66,12 @@ uploadArea.addEventListener("drop", (e) => {
     }
 });
 
+// selección desde explorer
 
 pdfInput.addEventListener("change", () => {
-
       const file = pdfInput.files[0];
 
+      archivoExitoso(file);
 });
 
 form.addEventListener("submit", async (e) => {
@@ -84,8 +86,7 @@ form.addEventListener("submit", async (e) => {
 
         return;
     
-    }
-
+    } 
 
     const formData = new FormData();
 
@@ -94,15 +95,18 @@ form.addEventListener("submit", async (e) => {
     resultsDiv.innerHTML = `
         <div class="card">
             <h2>Buscando ofertas...</h2>
-            <p>Esto puede tardar unos segundos.</p>
+            <p>Esto puede tardar un poco</p>
         </div>
     `;
 
     summary.innerHTML = `
         <h3>${file.name}</h3>
 
-        <p>Analizando CV...</p>
+        <p>Analizando...</p>
     `;
+
+
+    // fetch a la api y respuesta json
 
     try {
 
@@ -225,9 +229,7 @@ form.addEventListener("submit", async (e) => {
 
    const totalVacancies = jobs.reduce(
 
-    (acc, job) => acc + job.vacancies.length,
-
-    0
+    (acc, job) => acc + job.vacancies.length, 0
 
 );
 
@@ -339,7 +341,7 @@ counter.textContent = `${totalVacancies} vacantes`;
         console.error(err);
 
         summary.innerHTML = `
-            <p>Error analizando CV.</p>
+            <p>Error analizando archivo...</p>
         `;
 
         resultsDiv.innerHTML = `

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Job Matcher</title>
+    <title>AI Job Matcher</title>
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -16,10 +16,10 @@
 
     <header class="hero">
 
-        <h1>Job Matcher</h1>
+        <h1>Encuentra ofertas hechas para tí</h1>
 
         <p class="subtitle">
-            Sube tu CV y encuentra las vacantes que mejor se adapten a tu perfil.
+            La IA analiza tu perfil y trae las vacantes que mejor encajen con tus habilidades :)
         </p>
 
     </header>
@@ -32,12 +32,9 @@
 
             <section class="card">
 
-                <h2>Subir CV</h2>
-
                 <form id="searchForm">
 
 
-                    <!-- ARREGLAR ESTO INPUT VERDE  -->
                     <label class="upload-area">
 
                         <input
@@ -54,11 +51,11 @@
                         </span>
 
                         <span class="upload-title">
-                            Selecciona tu CV
+                            Subir archivo
                         </span>
 
                         <span class="upload-subtitle">
-                            En formato PDF
+                            Solo formato PDF
                         </span>
 
                     </label>
@@ -78,14 +75,14 @@
 
             <section class="card">
 
-                <h2>Análisis de IA:</h2>
+                <h2>Análisis de IA</h2>
 
                 <div id="summary">
 
                     <div class="empty-summary">
 
                         <p>
-                            Una vez completado, aparecerán aquí tus habilidades :)
+                            Una vez completado, aquí se mostrará un resumen de tu CV
                         </p>
 
                     </div>
@@ -109,7 +106,7 @@
                     class="job-counter"
                     id="jobCounter">
 
-                    0 resultados
+                    0 (por ahora)
 
                 </span>
 
